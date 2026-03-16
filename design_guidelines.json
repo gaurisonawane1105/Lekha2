@@ -1,0 +1,142 @@
+{
+  "identity": {
+    "name": "E1",
+    "mission": "Create a 'Swiss & High-Contrast' academic platform that feels authoritative yet modern. Break the 'boring admin panel' stereotype with Bento grids, subtle noise textures, and deep purposeful typography.",
+    "anti_patterns": [
+      "No generic 'Bootstrap Blue' (#007bff).",
+      "No default Inter font for headings.",
+      "No pure white (#ffffff) backgrounds without texture or subtle off-white tint.",
+      "No 'Admin LTE' sidebar styles."
+    ]
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Manrope, sans-serif",
+      "body": "Public Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-3xl md:text-4xl font-semibold tracking-tight",
+      "h3": "text-2xl font-semibold tracking-tight",
+      "body": "text-base leading-relaxed text-slate-600",
+      "small": "text-sm font-medium text-slate-500 uppercase tracking-wider"
+    },
+    "imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap');"
+    ]
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#0F172A",
+        "foreground": "#F8FAFC",
+        "description": "Deep Oxford Blue - The anchor of authority."
+      },
+      "secondary": {
+        "DEFAULT": "#F1F5F9",
+        "foreground": "#0F172A",
+        "description": "Paper White / Slate 100 - Backgrounds and panels."
+      },
+      "accent": {
+        "DEFAULT": "#2563EB",
+        "foreground": "#FFFFFF",
+        "description": "Royal Blue - Primary actions and active states."
+      },
+      "background": "#F8FAFC",
+      "card": "#FFFFFF",
+      "border": "#E2E8F0",
+      "success": "#059669",
+      "warning": "#D97706",
+      "destructive": "#DC2626"
+    },
+    "gradients": {
+      "subtle_mesh": "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/50 via-slate-50/50 to-white",
+      "login_overlay": "bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-slate-900/20"
+    }
+  },
+  "visual_enhancers": {
+    "texture": {
+      "noise": "bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20",
+      "usage": "Overlay on solid backgrounds to reduce digital flatness."
+    },
+    "shadows": {
+      "soft": "shadow-[0_2px_8px_rgba(15,23,42,0.08)]",
+      "float": "shadow-[0_12px_24px_-8px_rgba(15,23,42,0.12)]",
+      "inner": "shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
+    },
+    "borders": {
+      "subtle": "border border-slate-200",
+      "highlight": "border-l-4 border-l-blue-600"
+    }
+  },
+  "layout_strategies": {
+    "dashboard_grid": {
+      "type": "Bento Grid (Mode B)",
+      "classes": "grid grid-cols-1 md:grid-cols-12 gap-6 p-6 md:p-8",
+      "logic": "12-column system. Widgets span 3, 4, 6, or 8 columns. Full height children."
+    },
+    "containers": {
+      "card": "bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow duration-200",
+      "page_shell": "min-h-screen bg-slate-50/50 flex flex-col md:flex-row"
+    }
+  },
+  "components": {
+    "Button": {
+      "style": "h-10 px-6 rounded-lg font-medium transition-all active:scale-95",
+      "variants": {
+        "default": "bg-slate-900 text-white hover:bg-slate-800 shadow-sm",
+        "outline": "border-2 border-slate-200 bg-transparent hover:border-slate-300 hover:bg-slate-50 text-slate-700"
+      }
+    },
+    "Card": {
+      "style": "rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden"
+    },
+    "Input": {
+      "style": "h-11 rounded-lg border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:border-blue-500 transition-all"
+    },
+    "Sidebar": {
+      "style": "w-64 border-r border-slate-200 bg-white h-screen sticky top-0 flex flex-col p-4 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)]"
+    }
+  },
+  "media": {
+    "image_urls": {
+      "login_bg": {
+        "url": "https://images.unsplash.com/photo-1731200301762-af6a21e9037a?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "alt": "Modern university hallway",
+        "usage": "Full screen background for Login/Register pages with overlay."
+      },
+      "empty_files": {
+        "url": "https://images.unsplash.com/photo-1597920940566-a77511f9327d?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "alt": "Library bookshelves",
+        "usage": "Empty state for Project Files or Header background."
+      }
+    },
+    "icons": "Use 'lucide-react' for all UI icons. Use 'recharts' for data visualization."
+  },
+  "accessibility": {
+    "rules": [
+      "Text contrast must be WCAG AA compliant (4.5:1).",
+      "Interactive elements must have :focus-visible states.",
+      "All images must have alt text.",
+      "Do not rely on color alone for status (use icons + color)."
+    ]
+  },
+  "instructions_to_main_agent": [
+    "INSTALL: `yarn add framer-motion clsx tailwind-merge` if not present.",
+    "SETUP: Add the Google Fonts import to `src/index.css`.",
+    "THEME: Configure `tailwind.config.js` to use the specific colors defined in `colors.palette`.",
+    "COMPONENT: Create a `Layout` component that handles the Sidebar + Main Content structure.",
+    "COMPONENT: Create a `StatCard` component for dashboards using the Bento Grid style.",
+    "PAGE: Login page must use the `login_bg` image with a glassmorphism card for the form.",
+    "CRITICAL: Do not use default HTML inputs. Use Shadcn `Input`, `Select`, `Textarea` styled with the guidelines.",
+    "CRITICAL: Ensure all interactive elements have `data-testid` attributes."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI slop' aesthetic (generic centered layouts, default blue).",
+    "Use 2-3x more spacing (p-8, gap-8) than typical designs.",
+    "Every interaction needs micro-animations (hover lift, focus ring, page transitions).",
+    "Use 'sonner' for toasts.",
+    "Use named exports for components, default exports for pages."
+  ]
+}
