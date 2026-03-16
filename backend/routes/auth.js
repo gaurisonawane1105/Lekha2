@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { getDB } = require('../config/db');
+const { getDB, ObjectId } = require('../config/db');
 const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
@@ -130,7 +130,8 @@ router.post('/login', async (req, res) => {
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const db = getDB();
-    const user = await db.collection('users').findOne({ _id: req.user.user_id });
+    const userId = typeof req.user.user_id === 'string' ? new ObjectId(req.user.user_id) : req.user.user_id;
+    const user = await db.collection('users').findOne({ _id: userId });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
